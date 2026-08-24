@@ -175,7 +175,7 @@ fun LocationsScreen(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
-                        contentDescription = "Search",
+                        contentDescription = "Search ",
                         tint = Color.White,
                         modifier = Modifier.size(28.dp)
                     )
@@ -197,14 +197,6 @@ fun LocationsScreen(
 
                     if (city.isNotBlank()) {
 
-                        // MainActivity checks the API.
-                        //
-                        // If weather exists:
-                        //     the city is saved.
-                        //
-                        // If weather does not exist:
-                        //     MainActivity sets searchError
-                        //     and this screen shows the popup.
 
                         onCitySearched(city)
 
@@ -215,7 +207,7 @@ fun LocationsScreen(
 
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search",
+                    contentDescription = "Search button",
                     tint = Color.White,
                     modifier = Modifier.size(28.dp)
                 )

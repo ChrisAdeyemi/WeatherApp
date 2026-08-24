@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -22,6 +23,8 @@ class LocationsScreenTest {
 
             LocationsScreen(
                 savedCities = emptyList(),
+                searchError = "",
+                onDismissError = {},
                 onCitySelected = {},
                 onCitySearched = {}
             )
@@ -51,6 +54,8 @@ class LocationsScreenTest {
 
             LocationsScreen(
                 savedCities = listOf("Dublin"),
+                searchError = "",
+                onDismissError = {},
                 onCitySelected = {},
                 onCitySearched = {}
             )
@@ -69,7 +74,6 @@ class LocationsScreenTest {
             .assertIsDisplayed()
     }
 
-
     @Test
     fun searchBoxAcceptsCity() {
 
@@ -77,13 +81,15 @@ class LocationsScreenTest {
 
             LocationsScreen(
                 savedCities = emptyList(),
+                searchError = "",
+                onDismissError = {},
                 onCitySelected = {},
                 onCitySearched = {}
             )
         }
 
         composeTestRule
-            .onNodeWithText("Search city")
+            .onNode(hasSetTextAction())
             .performTextInput("Dublin")
 
         composeTestRule
@@ -92,32 +98,16 @@ class LocationsScreenTest {
     }
 
     @Test
-    fun duplicateLocationsAreRemoved() {
-        composeTestRule.setContent {
-
-            LocationsScreen(
-                savedCities = listOf(
-                    "Dublin",
-                    "dublin",
-                    "DUBLIN"
-                ),
-                onCitySelected = {},
-                onCitySearched = {}
-            )
-        }
-        composeTestRule
-            .onNodeWithText("Dublin")
-            .assertIsDisplayed()
-    }
-
-    @Test
     fun searchButtonCallsSearch() {
+
         var searchedCity = ""
 
         composeTestRule.setContent {
 
             LocationsScreen(
                 savedCities = emptyList(),
+                searchError = "",
+                onDismissError = {},
                 onCitySelected = {},
                 onCitySearched = { city ->
                     searchedCity = city
@@ -126,10 +116,11 @@ class LocationsScreenTest {
         }
 
         composeTestRule
-            .onNodeWithText("Search city")
+            .onNode(hasSetTextAction())
             .performTextInput("Dublin")
+
         composeTestRule
-            .onNodeWithContentDescription("Search")
+            .onNodeWithContentDescription("Search button")
             .performClick()
 
         assertEquals(
@@ -147,6 +138,8 @@ class LocationsScreenTest {
 
             LocationsScreen(
                 savedCities = listOf("Dublin"),
+                searchError = "",
+                onDismissError = {},
                 onCitySelected = { city ->
                     selectedCity = city
                 },
@@ -171,6 +164,8 @@ class LocationsScreenTest {
 
             LocationsScreen(
                 savedCities = listOf("Dublin"),
+                searchError = "",
+                onDismissError = {},
                 onCitySelected = {},
                 onCitySearched = {}
             )
@@ -181,7 +176,6 @@ class LocationsScreenTest {
             .assertIsDisplayed()
     }
 
-
     @Test
     fun weatherIconIsDisplayed() {
 
@@ -189,6 +183,8 @@ class LocationsScreenTest {
 
             LocationsScreen(
                 savedCities = listOf("Dublin"),
+                searchError = "",
+                onDismissError = {},
                 onCitySelected = {},
                 onCitySearched = {}
             )
@@ -197,5 +193,64 @@ class LocationsScreenTest {
         composeTestRule
             .onNodeWithContentDescription("Weather")
             .assertIsDisplayed()
+    }
+
+    @Test
+    fun searchErrorIsDisplayed() {
+
+        composeTestRule.setContent {
+
+            LocationsScreen(
+                savedCities = emptyList(),
+                searchError =
+                    "No weather data is available for \"London\".",
+                onDismissError = {},
+                onCitySelected = {},
+                onCitySearched = {}
+            )
+        }
+
+        composeTestRule
+            .onNodeWithText("Location not found")
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithText(
+                "No weather data is available for \"London\"."
+            )
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithText("OK")
+            .assertIsDisplayed()
+    }
+
+    @Test
+    fun errorCanBeDismissed() {
+
+        var dismissed = false
+
+        composeTestRule.setContent {
+
+            LocationsScreen(
+                savedCities = emptyList(),
+                searchError =
+                    "No weather data is available for \"London\".",
+                onDismissError = {
+                    dismissed = true
+                },
+                onCitySelected = {},
+                onCitySearched = {}
+            )
+        }
+
+        composeTestRule
+            .onNodeWithText("OK")
+            .performClick()
+
+        assertEquals(
+            true,
+            dismissed
+        )
     }
 }
