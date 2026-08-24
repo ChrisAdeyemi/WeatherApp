@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Aplicación del tiempo</string>
+
+    <string name="search_city">Buscar ciudad</string>
+    <string name="search">Buscar</string>
+    <string name="getting_weather">Obteniendo el tiempo...</string>
+
+    <string name="weather_not_found">No se encontró el tiempo para %1$s.</string>
+    <string name="connection_error">No se puede conectar al servicio meteorológico.</string>
+
+    <string name="location">Ubicación</string>
+
+    <string name="temperature_range">RANGO DE TEMPERATURA</string>
+    <string name="todays_high">Máxima de hoy</string>
+
+    <string name="wind">VIENTO</string>
+    <string name="tomorrow">MAÑANA</string>
+    <string name="next_day_outlook">Pronóstico para el día siguiente</string>
+
+    <string name="km_per_hour">km/h</string>
+
+    <!-- Condiciones meteorológicas -->
+    <string name="sunny">Soleado</string>
+    <string name="cloudy">Nublado</string>
+    <string name="overcast">Muy nublado</string>
+    <string name="rain">Lluvia</string>
+    <string name="drizzle">Llovizna</string>
+    <string name="fog">Niebla</string>
+    <string name="snow">Nieve</string>
+
+    <!-- Direcciones del viento -->
+    <string name="north">Norte</string>
+    <string name="south">Sur</string>
+    <string name="east">Este</string>
+    <string name="west">Oeste</string>
+    <string name="northeast">Noreste</string>
+    <string name="northwest">Noroeste</string>
+    <string name="southeast">Sureste</string>
+    <string name="southwest">Suroeste</string>
+
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Weather App</string>
+
+    <string name="search_city">Search city</string>
+    <string name="search">Search</string>
+    <string name="getting_weather">Getting weather...</string>
+
+    <string name="weather_not_found">Weather for %1$s was not found.</string>
+    <string name="connection_error">Unable to connect to the weather service.</string>
+
+    <string name="location">Location</string>
+
+    <string name="temperature_range">TEMPERATURE RANGE</string>
+    <string name="todays_high">Todays high</string>
+
+    <string name="wind">WIND</string>
+    <string name="tomorrow">TOMORROW</string>
+    <string name="next_day_outlook">Next day outlook</string>
+
+    <string name="km_per_hour">km/h</string>
+
+    <!-- Weather conditions -->
+    <string name="sunny">Sunny</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="overcast">Overcast</string>
+    <string name="rain">Rain</string>
+    <string name="drizzle">Drizzle</string>
+    <string name="fog">Fog</string>
+    <string name="snow">Snow</string>
+
+    <!-- Wind directions -->
+    <string name="north">North</string>
+    <string name="south">South</string>
+    <string name="east">East</string>
+    <string name="west">West</string>
+    <string name="northeast">Northeast</string>
+    <string name="northwest">Northwest</string>
+    <string name="southeast">Southeast</string>
+    <string name="southwest">Southwest</string>
+
+</resources>
