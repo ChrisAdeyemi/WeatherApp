@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,7 +65,9 @@ fun LocationsScreen(
 
             title = {
                 Text(
-                    text = "Location not found"
+                    text = stringResource(
+                        R.string.location_not_found
+                    )
                 )
             },
 
@@ -80,7 +83,11 @@ fun LocationsScreen(
                         onDismissError()
                     }
                 ) {
-                    Text("OK")
+                    Text(
+                        text = stringResource(
+                            R.string.ok
+                        )
+                    )
                 }
             }
         )
@@ -137,7 +144,9 @@ fun LocationsScreen(
         // =========================================================
 
         Text(
-            text = "Locations",
+            text = stringResource(
+                R.string.locations
+            ),
             color = Color.White,
             fontSize = 34.sp,
             fontWeight = FontWeight.Bold
@@ -165,7 +174,9 @@ fun LocationsScreen(
 
                 placeholder = {
                     Text(
-                        text = "Search city",
+                        text = stringResource(
+                            R.string.search_city
+                        ),
                         color = Color.White.copy(
                             alpha = 0.70f
                         )
@@ -175,7 +186,9 @@ fun LocationsScreen(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
-                        contentDescription = "Search ",
+                        contentDescription = stringResource(
+                            R.string.search
+                        ),
                         tint = Color.White,
                         modifier = Modifier.size(28.dp)
                     )
@@ -197,7 +210,6 @@ fun LocationsScreen(
 
                     if (city.isNotBlank()) {
 
-
                         onCitySearched(city)
 
                         searchText = ""
@@ -207,8 +219,13 @@ fun LocationsScreen(
 
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search button",
+
+                    contentDescription = stringResource(
+                        R.string.search_button
+                    ),
+
                     tint = Color.White,
+
                     modifier = Modifier.size(28.dp)
                 )
             }
@@ -223,11 +240,16 @@ fun LocationsScreen(
         // =========================================================
 
         Text(
-            text = "My Locations",
+            text = stringResource(
+                R.string.my_locations
+            ),
+
             color = Color.White.copy(
                 alpha = 0.75f
             ),
+
             fontSize = 14.sp,
+
             fontWeight = FontWeight.Bold
         )
 
@@ -257,7 +279,9 @@ fun LocationsScreen(
                         Icons.Default.LocationOn,
 
                     contentDescription =
-                        "No locations",
+                        stringResource(
+                            R.string.no_locations
+                        ),
 
                     tint =
                         Color.White.copy(
@@ -276,9 +300,16 @@ fun LocationsScreen(
                 Text(
                     text =
                         if (searchText.isBlank()) {
-                            "No saved locations"
+
+                            stringResource(
+                                R.string.no_saved_locations
+                            )
+
                         } else {
-                            "No matching locations"
+
+                            stringResource(
+                                R.string.no_matching_locations
+                            )
                         },
 
                     color =
@@ -295,7 +326,9 @@ fun LocationsScreen(
 
                 Text(
                     text =
-                        "Search for a city above",
+                        stringResource(
+                            R.string.search_for_city_above
+                        ),
 
                     color =
                         Color.White.copy(
@@ -381,7 +414,9 @@ private fun LocationItem(
                 Icons.Default.LocationOn,
 
             contentDescription =
-                "Location",
+                stringResource(
+                    R.string.location
+                ),
 
             tint =
                 Color.White,
@@ -422,7 +457,9 @@ private fun LocationItem(
 
             Text(
                 text =
-                    "View weather",
+                    stringResource(
+                        R.string.view_weather
+                    ),
 
                 color =
                     Color.White.copy(
@@ -448,7 +485,9 @@ private fun LocationItem(
                 Icons.Default.Cloud,
 
             contentDescription =
-                "Weather",
+                stringResource(
+                    R.string.weather
+                ),
 
             tint =
                 Color.White.copy(

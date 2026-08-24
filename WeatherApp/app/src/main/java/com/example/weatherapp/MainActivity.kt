@@ -114,6 +114,8 @@ class MainActivity : ComponentActivity() {
 
                 NavigationBar {
 
+                    // HOME
+
                     NavigationBarItem(
                         selected = selectedScreen == 0,
 
@@ -124,14 +126,23 @@ class MainActivity : ComponentActivity() {
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Home,
-                                contentDescription = "Home"
+                                contentDescription =
+                                    stringResource(
+                                        R.string.home
+                                    )
                             )
                         },
 
                         label = {
-                            Text("Home")
+                            Text(
+                                stringResource(
+                                    R.string.home
+                                )
+                            )
                         }
                     )
+
+                    // LOCATIONS
 
                     NavigationBarItem(
                         selected = selectedScreen == 1,
@@ -142,13 +153,22 @@ class MainActivity : ComponentActivity() {
 
                         icon = {
                             Icon(
-                                imageVector = Icons.Default.LocationOn,
-                                contentDescription = "Locations"
+                                imageVector =
+                                    Icons.Default.LocationOn,
+
+                                contentDescription =
+                                    stringResource(
+                                        R.string.locations
+                                    )
                             )
                         },
 
                         label = {
-                            Text("Locations")
+                            Text(
+                                stringResource(
+                                    R.string.locations
+                                )
+                            )
                         }
                     )
                 }
@@ -187,20 +207,20 @@ class MainActivity : ComponentActivity() {
 
                         onCitySearched = { city ->
 
-                            val cleanCity = city.trim()
+                            val cleanCity =
+                                city.trim()
 
                             if (cleanCity.isNotBlank()) {
 
-                                // Check the API BEFORE saving.
                                 getWeather(
 
                                     city = cleanCity,
 
                                     onSuccess = {
 
-                                        // Weather exists.
-                                        // Now save the city.
-                                        saveCity(cleanCity)
+                                        saveCity(
+                                            cleanCity
+                                        )
 
                                         savedCities =
                                             getSavedCities()
@@ -213,10 +233,11 @@ class MainActivity : ComponentActivity() {
 
                                     onError = {
 
-                                        // Weather does not exist.
-                                        // Do NOT save the city.
                                         searchError =
-                                            "No weather data is available for \"$cleanCity\"."
+                                            getString(
+                                                R.string.no_weather_data,
+                                                cleanCity
+                                            )
                                     }
                                 )
                             }
@@ -233,7 +254,8 @@ class MainActivity : ComponentActivity() {
 
     private fun saveCity(city: String) {
 
-        val cleanCity = city.trim()
+        val cleanCity =
+            city.trim()
 
         if (cleanCity.isBlank()) {
             return
@@ -369,7 +391,8 @@ class MainActivity : ComponentActivity() {
             ) {
 
                 Spacer(
-                    modifier = Modifier.height(25.dp)
+                    modifier =
+                        Modifier.height(25.dp)
                 )
 
                 // =================================================
@@ -379,7 +402,8 @@ class MainActivity : ComponentActivity() {
                 if (loading) {
 
                     Column(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier =
+                            Modifier.fillMaxWidth(),
 
                         horizontalAlignment =
                             Alignment.CenterHorizontally
@@ -390,7 +414,8 @@ class MainActivity : ComponentActivity() {
                         )
 
                         Spacer(
-                            modifier = Modifier.height(12.dp)
+                            modifier =
+                                Modifier.height(12.dp)
                         )
 
                         Text(
@@ -419,7 +444,8 @@ class MainActivity : ComponentActivity() {
 
                             color = Color.White,
 
-                            textAlign = TextAlign.Center,
+                            textAlign =
+                                TextAlign.Center,
 
                             fontSize = 16.sp,
 
@@ -997,7 +1023,10 @@ class MainActivity : ComponentActivity() {
                     runOnUiThread {
 
                         onError(
-                            "No weather data is available for \"$city\"."
+                            getString(
+                                R.string.no_weather_data,
+                                city
+                            )
                         )
                     }
                 }
@@ -1122,7 +1151,7 @@ class MainActivity : ComponentActivity() {
                 getWeatherIcon(condition),
 
             contentDescription =
-                condition,
+                getConditionText(condition),
 
             tint = tint,
 

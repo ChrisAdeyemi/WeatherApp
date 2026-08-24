@@ -1,36 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- App -->
     <string name="app_name">Aplicación del tiempo</string>
 
+    <!-- Navigation -->
+    <string name="home">Inicio</string>
+    <string name="locations">Ubicaciones</string>
+
+    <!-- Search -->
     <string name="search_city">Buscar ciudad</string>
     <string name="search">Buscar</string>
-    <string name="getting_weather">Obteniendo el tiempo...</string>
+    <string name="search_button">Botón de búsqueda</string>
 
+    <!-- Locations -->
+    <string name="my_locations">Mis ubicaciones</string>
+    <string name="no_saved_locations">No hay ubicaciones guardadas</string>
+    <string name="no_matching_locations">No hay ubicaciones coincidentes</string>
+    <string name="search_for_city_above">Busca una ciudad arriba</string>
+    <string name="view_weather">Ver el tiempo</string>
+    <string name="no_locations">No hay ubicaciones</string>
+    <string name="location_not_found">Ubicación no encontrada</string>
+    <string name="ok">Aceptar</string>
+
+    <!-- Weather -->
+    <string name="getting_weather">Obteniendo el tiempo...</string>
+    <string name="weather">Tiempo</string>
+    <string name="no_weather_data">No hay datos meteorológicos disponibles para %1$s.</string>
     <string name="weather_not_found">No se encontró el tiempo para %1$s.</string>
     <string name="connection_error">No se puede conectar al servicio meteorológico.</string>
 
+    <!-- Weather details -->
     <string name="location">Ubicación</string>
-
     <string name="temperature_range">RANGO DE TEMPERATURA</string>
     <string name="todays_high">Máxima de hoy</string>
-
     <string name="wind">VIENTO</string>
     <string name="tomorrow">MAÑANA</string>
-    <string name="next_day_outlook">Pronóstico para el día siguiente</string>
-
+    <string name="next_day_outlook">Previsión del día siguiente</string>
     <string name="km_per_hour">km/h</string>
 
-    <!-- Condiciones meteorológicas -->
+    <!-- Weather conditions -->
     <string name="sunny">Soleado</string>
     <string name="cloudy">Nublado</string>
-    <string name="overcast">Muy nublado</string>
+    <string name="overcast">Cubierto</string>
     <string name="rain">Lluvia</string>
     <string name="drizzle">Llovizna</string>
     <string name="fog">Niebla</string>
     <string name="snow">Nieve</string>
 
-    <!-- Direcciones del viento -->
+    <!-- Wind directions -->
     <string name="north">Norte</string>
     <string name="south">Sur</string>
     <string name="east">Este</string>
@@ -39,5 +57,10 @@
     <string name="northwest">Noroeste</string>
     <string name="southeast">Sureste</string>
     <string name="southwest">Suroeste</string>
+
+    <!-- Accessibility / icon descriptions -->
+    <string name="weather_icon">Tiempo</string>
+    <string name="location_icon">Ubicación</string>
+    <string name="no_locations_icon">Sin ubicaciones</string>
 
 </resources>

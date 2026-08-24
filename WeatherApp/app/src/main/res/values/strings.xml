@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- App -->
     <string name="app_name">Weather App</string>
 
+    <!-- Navigation -->
+    <string name="home">Home</string>
+    <string name="locations">Locations</string>
+
+    <!-- Search -->
     <string name="search_city">Search city</string>
     <string name="search">Search</string>
-    <string name="getting_weather">Getting weather...</string>
+    <string name="search_button">Search button</string>
 
+    <!-- Locations -->
+    <string name="my_locations">My Locations</string>
+    <string name="no_saved_locations">No saved locations</string>
+    <string name="no_matching_locations">No matching locations</string>
+    <string name="search_for_city_above">Search for a city above</string>
+    <string name="view_weather">View weather</string>
+    <string name="no_locations">No locations</string>
+    <string name="location_not_found">Location not found</string>
+    <string name="ok">OK</string>
+
+    <!-- Weather -->
+    <string name="getting_weather">Getting weather...</string>
+    <string name="weather">Weather</string>
+    <string name="no_weather_data">No weather data is available for %1$s.</string>
     <string name="weather_not_found">Weather for %1$s was not found.</string>
     <string name="connection_error">Unable to connect to the weather service.</string>
 
+    <!-- Weather details -->
     <string name="location">Location</string>
-
     <string name="temperature_range">TEMPERATURE RANGE</string>
     <string name="todays_high">Todays high</string>
-
     <string name="wind">WIND</string>
     <string name="tomorrow">TOMORROW</string>
     <string name="next_day_outlook">Next day outlook</string>
-
     <string name="km_per_hour">km/h</string>
 
     <!-- Weather conditions -->
@@ -39,5 +57,10 @@
     <string name="northwest">Northwest</string>
     <string name="southeast">Southeast</string>
     <string name="southwest">Southwest</string>
+
+    <!-- Accessibility / icon descriptions -->
+    <string name="weather_icon">Weather</string>
+    <string name="location_icon">Location</string>
+    <string name="no_locations_icon">No locations</string>
 
 </resources>
