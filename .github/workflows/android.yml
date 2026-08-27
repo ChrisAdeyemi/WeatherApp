@@ -39,6 +39,11 @@ jobs:
       - name: Run unit tests and generate coverage
         run: ./gradlew testDebugUnitTest jacocoTestReport
 
+      - name: Check JaCoCo report
+        run: |
+          echo "Looking for JaCoCo reports..."
+          find app/build -name "jacocoTestReport.xml" -print
+
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
