@@ -62,6 +62,8 @@ jobs:
             -Dsonar.organization=chrisadeyemi
             -Dsonar.projectKey=ChrisAdeyemi_WeatherApp
             -Dsonar.coverage.jacoco.xmlReportPaths=app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+            -Dsonar.coverage.exclusions=**/MainActivity.kt,**/LocationsScreen.kt,**/ui/theme/**,**/*Test.kt
+            -Dsonar.tests=app/src/test,app/src/androidTest
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
