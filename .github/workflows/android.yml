@@ -37,17 +37,24 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run unit tests and generate coverage
-        run: ./gradlew testDebugUnitTest jacocoTestReport
+        run: ./gradlew clean testDebugUnitTest jacocoTestReport
 
-      - name: Check JaCoCo report
+      - name: Verify JaCoCo coverage report
         run: |
-          echo "Looking for JaCoCo reports..."
-          find app/build -name "jacocoTestReport.xml" -print
+          REPORT="app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
 
-      - name: Check JaCoCo coverage data
-        run: |
-          echo "Checking JaCoCo XML..."
-          head -c 1000 app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+          echo "Checking for JaCoCo XML report..."
+
+          if [ ! -f "$REPORT" ]; then
+            echo "ERROR: JaCoCo XML report was not generated."
+            exit 1
+          fi
+
+          echo "JaCoCo report found:"
+          ls -lh "$REPORT"
+
+          echo "Coverage report contents:"
+          head -c 1000 "$REPORT"
 
       - name: Build debug APK
         run: ./gradlew assembleDebug
@@ -61,9 +68,10 @@ jobs:
           args: >
             -Dsonar.organization=chrisadeyemi
             -Dsonar.projectKey=ChrisAdeyemi_WeatherApp
+            -Dsonar.sources=app/src/main
+            -Dsonar.tests=app/src/test
             -Dsonar.coverage.jacoco.xmlReportPaths=app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
             -Dsonar.coverage.exclusions=**/MainActivity.kt,**/LocationsScreen.kt,**/ui/theme/**,**/*Test.kt
-            -Dsonar.tests=app/src/test,app/src/androidTest
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
