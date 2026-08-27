@@ -41,8 +41,9 @@ jobs:
 
       - name: Verify JaCoCo coverage report
         run: |
-          echo "Checking for JaCoCo XML report..."
           REPORT="app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+
+          echo "Checking for JaCoCo XML report..."
 
           if [ ! -f "$REPORT" ]; then
             echo "ERROR: JaCoCo XML report was not generated."
@@ -51,6 +52,9 @@ jobs:
 
           echo "JaCoCo report found:"
           ls -lh "$REPORT"
+
+          echo "Coverage report contents:"
+          head -c 1000 "$REPORT"
 
       - name: Build debug APK
         run: ./gradlew assembleDebug
