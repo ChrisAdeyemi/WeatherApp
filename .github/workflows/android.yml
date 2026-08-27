@@ -44,6 +44,11 @@ jobs:
           echo "Looking for JaCoCo reports..."
           find app/build -name "jacocoTestReport.xml" -print
 
+      - name: Check JaCoCo coverage data
+        run: |
+          echo "Checking JaCoCo XML..."
+          head -c 1000 app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
