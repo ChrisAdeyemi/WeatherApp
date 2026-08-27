@@ -39,11 +39,16 @@ android {
     buildFeatures {
         compose = true
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
-
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
@@ -77,24 +82,18 @@ tasks.register<JacocoReport>("jacocoTestReport") {
         "**/R$*.class",
         "**/BuildConfig.*",
         "**/Manifest*.*",
-        "**/*Test*.*",
-        "android/**/*.*",
-        "**/ui/theme/**/*.*"
+        "**/*Test*.*"
     )
 
-    val javaClasses = fileTree(
+    val kotlinClasses = fileTree(
         layout.buildDirectory.dir(
-            "intermediates/javac/debug/compileDebugJavaWithJavac/classes"
+            "intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes"
         )
     ) {
         exclude(excludes)
     }
 
-    val kotlinClasses = fileTree(
-        layout.buildDirectory.dir("tmp/kotlin-classes/debug")
-    ) {
-        exclude(excludes)
-    }
+    classDirectories.setFrom(kotlinClasses)
 
     sourceDirectories.setFrom(
         files(
@@ -103,17 +102,9 @@ tasks.register<JacocoReport>("jacocoTestReport") {
         )
     )
 
-    classDirectories.setFrom(
-        files(
-            javaClasses,
-            kotlinClasses
-        )
-    )
-
     executionData.setFrom(
         fileTree(layout.buildDirectory) {
             include("jacoco/testDebugUnitTest.exec")
-            include("outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec")
         }
     )
 }
