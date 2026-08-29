@@ -41,8 +41,8 @@ android {
     }
 
     testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
+        unitTests.all {
+            it.useJUnitPlatform()
         }
     }
 }
@@ -85,29 +85,21 @@ tasks.register<JacocoReport>("jacocoTestReport") {
         "**/*Test*.*"
     )
 
-
-    val kotlinClasses = fileTree("${buildDir}/tmp/kotlin-classes/debug") {
+    val kotlinClasses = fileTree("$buildDir/tmp/kotlin-classes/debug") {
         exclude(excludes)
     }
 
-
-    val javaClasses = fileTree("${buildDir}/intermediates/javac/debug/classes") {
+    val javaClasses = fileTree("$buildDir/intermediates/javac/debug/classes") {
         exclude(excludes)
     }
 
     classDirectories.setFrom(files(kotlinClasses, javaClasses))
 
-    sourceDirectories.setFrom(
-        files(
-            "src/main/java",
-            "src/main/kotlin"
-        )
-    )
-
+    sourceDirectories.setFrom(files("src/main/java", "src/main/kotlin"))
 
     executionData.setFrom(
-        fileTree("${buildDir}/outputs/unit_test_code_coverage/debugUnitTest") {
-            include("*.exec", "*.ec")
+        fileTree(buildDir) {
+            include("**/*.exec", "**/*.ec")
         }
     )
 }
