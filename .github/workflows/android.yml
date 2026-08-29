@@ -41,7 +41,7 @@ jobs:
 
       - name: Verify JaCoCo coverage report
         run: |
-          REPORT="app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+          REPORT="WeatherApp/app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
 
           echo "Checking for JaCoCo XML report..."
 
@@ -67,8 +67,8 @@ jobs:
             -Dsonar.projectKey=ChrisAdeyemi_WeatherApp
             -Dsonar.sources=app/src/main
             -Dsonar.tests=app/src/test
-            -Dsonar.junit.reportPaths=app/build/test-results/testDebugUnitTest
-            -Dsonar.coverage.jacoco.xmlReportPaths=app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+            -Dsonar.junit.reportPaths=WeatherApp/app/build/test-results/testDebugUnitTest
+            -Dsonar.coverage.jacoco.xmlReportPaths=WeatherApp/app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
             -Dsonar.coverage.exclusions=**/MainActivity.kt,**/LocationsScreen.kt,**/WeatherScreen.kt,**/ui/theme/**
 
       - name: Upload APK artifact
