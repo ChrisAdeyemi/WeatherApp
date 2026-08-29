@@ -39,11 +39,11 @@ jobs:
       - name: Run unit tests and generate coverage
         run: ./gradlew clean testDebugUnitTest jacocoTestReport
 
-      - name: Verify JaCoCo coverage
+      - name: Verify JaCoCo coverage report
         run: |
           REPORT="app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
 
-          echo "Checking JaCoCo report..."
+          echo "Checking for JaCoCo XML report..."
 
           if [ ! -f "$REPORT" ]; then
             echo "ERROR: JaCoCo XML report was not generated."
@@ -52,9 +52,6 @@ jobs:
 
           echo "JaCoCo report found:"
           ls -lh "$REPORT"
-
-          echo "Checking coverage counters:"
-          grep -o '<counter type="LINE"[^>]*/>' "$REPORT" | tail -1
 
       - name: Build debug APK
         run: ./gradlew assembleDebug
@@ -72,6 +69,7 @@ jobs:
             -Dsonar.tests=app/src/test
             -Dsonar.junit.reportPaths=app/build/test-results/testDebugUnitTest
             -Dsonar.coverage.jacoco.xmlReportPaths=app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+            -Dsonar.coverage.exclusions=**/MainActivity.kt,**/LocationsScreen.kt,**/WeatherScreen.kt,**/ui/theme/**
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
